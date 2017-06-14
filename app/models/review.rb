@@ -4,6 +4,4 @@ class Review < ApplicationRecord
   has_many :votes
 
   validates :user_id, presence: true
-  validates :review_id, presence: true
-  validates :status, presence: true
 end
