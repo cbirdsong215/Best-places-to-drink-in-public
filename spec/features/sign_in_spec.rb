@@ -1,19 +1,67 @@
-require 'spec_helper'
+require 'rails_helper'
 
-feature 'sign up' do
+feature 'user signs in' do
 
-  scenario 'specifying valid and required infromation ' do
-    
-    visit new_user_registration_path
-    fill_in 'First Name', with: 'Bob'
-    fill_in 'Last Name', with: 'Smith'
-    fill_in 'Email', with: 'bob@example.com'
-    fill_in 'Password', with: 'password'
-    fill_in 'Password Confirmation', with: 'password'
-    click_button 'Sign Up'
+  let(:user) { User.create(
+    first_name: 'pete',
+    last_name: 'corb',
+    email: 'whateever@yahoo.com',
+    password: 'password',
+    password_confirmation: 'password'
+  )}
 
-    expect(page).to have_content("You have successfully signed up!")
-    expect(page).to have_content("Sign Out")
+  scenario 'user enters correct email and password' do
+    visit root_path
+    click_link 'Sign In'
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Signed in successfully.')
+    expect(page).to have_content('Sign Out')
   end
 
+  scenario 'user supplies incorrect email' do
+    visit root_path
+    click_link 'Sign In'
+
+    fill_in 'Email', with: "wrongemail"
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid Email or password')
+    expect(page).to have_content('Email')
+    expect(page).to have_content('Password')
+    expect(page).to have_content('Password')
+    expect(page).to have_content('Sign In')
+  end
+
+  scenario 'user supplies incorrect password' do
+    visit root_path
+    click_link 'Sign In'
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: 'wrongPassword'
+    click_button 'Sign In'
+
+    expect(page).to have_content('Invalid Email or password')
+    expect(page).to have_content('Email')
+    expect(page).to have_content('Password')
+    expect(page).to have_content('Password')
+    expect(page).to have_content('Sign In')
+  end
+
+
+  scenario 'user can not sign in when already signed in' do
+    visit new_user_session_path
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    visit new_user_session_path
+
+    expect(page).to have_content('You are already signed in.')
+  end
 end
