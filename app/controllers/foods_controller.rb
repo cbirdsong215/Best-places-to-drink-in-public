@@ -17,7 +17,6 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-
     respond_to do |format|
       if @food.save
         format.html { redirect_to @food, notice: 'Successfully created.' }
@@ -31,7 +30,7 @@ class FoodsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @food.update(review_params)
+      if @food.update(food_params)
         format.html { redirect_to @food, notice: 'Successfully updated.' }
         format.json { render :show, location: @food }
       else
@@ -44,7 +43,7 @@ class FoodsController < ApplicationController
   def destroy
     @food.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Food was successfully destroyed.' }
+      format.html { redirect_to food_url, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -56,7 +55,7 @@ class FoodsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def review_params
-      params.require(:food).permit(:name, :description, :photo, :user_id)
+    def food_params
+      params.require(:food).permit(:name, :description, :photo, :user_id).merge(user_id: current_user.id)
     end
 end

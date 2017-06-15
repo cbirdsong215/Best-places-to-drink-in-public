@@ -1,15 +1,18 @@
-<%= form_with(model: review, local: true) do |form| %>
-  <% if review.errors.any? %>
+<%= form_for [@food,  @review] do |f| %>
+  <% if @review.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(review.errors.count, "error") %> prohibited this review from being saved:</h2>
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this @review from being saved:</h2>
 
       <ul>
-      <% review.errors.full_messages.each do |message| %>
+      <% @review.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+
+<%= @food.name %>
+<%= @food.photo %>
 
 
   <div class="field">
@@ -18,8 +21,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_field :body %>
+    <%= f.label :body, "Review" %>
+    <%= f.text_field :body %>
   </div>
 
   <div class="field">
@@ -27,6 +30,6 @@
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= f.submit "Add Review" %>
   </div>
 <% end %>

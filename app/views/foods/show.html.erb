@@ -2,6 +2,19 @@
 
 <p>
   <%= @food.name %>
+  <%= @food.photo %>
+  <%= @food.description %>
 </p>
 
-<%= link_to 'Review', new_food_review_path(@food) %> |
+<%= link_to "Add a Review", new_food_review_path(@food) %> |
+
+<% @reviews = Review.where(food_id: @food.id).order("created_at") %>
+
+<ul style="list-style: none;">
+  <% @reviews.each do |review| %>
+      <li><%= "#{review.user.first_name} #{review.user.last_name[0]}."%></li></br>
+      <li><%= review.rating %></li></br>
+      <li><%= review.body %></li></br>
+      <li><%= review.created_at.strftime("%B %d %Y") %></li></br></br>
+  <% end %>
+</ul>

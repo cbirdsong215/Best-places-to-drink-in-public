@@ -5,7 +5,6 @@ class ReviewsController < ApplicationController
   end
 
   def new
-    binding.pry
     @review = Review.new
     @food = Food.find(params[:food_id])
   end
@@ -14,12 +13,11 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    binding.pry
     @review = Review.new(review_params)
     @food = Food.find(params[:food_id])
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to @food, notice: 'Review was successfully created.' }
         format.json { render :show, location: @review }
       else
         format.html { render :new }
@@ -56,6 +54,6 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:rating, :body, :user_id, :food_id)
+      params.require(:review).permit(:rating, :body, :user_id, :food_id).merge(user_id: current_user.id)
     end
 end

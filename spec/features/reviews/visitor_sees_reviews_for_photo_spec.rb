@@ -1,36 +1,21 @@
 require 'rails_helper'
 
 feature "visitor sees list of reviews on food page" do
-    user = User.create(first_name: 'pete', last_name: 'corb', email: 'whateever@yahoo.com', password: 'password', password_confirmation: 'password')
-
-    food_pic = Food.create(name: "some food pic", description: "this is sooo funny", photo: "food_pic.com", user_id: user)
-
-    review_for_food_pic = Review.create(rating: 5, body: "This is the best thing ever", user_id: user, food_id: food_pic)
-
-    different_food_pic = Food.create(name: "some other food pic", description: "this is a different food", photo: "different_food_pic.com", user_id: user)
-
-    review_for_different_food_pic = Review.create(rating: 1, body: "This is completely different then the other one", user_id: user, food_id: different_food_pic)
-
   scenario "sees reviews for specific photo" do
 
-    visit food_path(food_pic)
+    user4 = User.create(first_name: 'user4', last_name: 'user4', email: 'user4@email.com', password: 'password', password_confirmation: 'password', admin: false)
 
-    expect(page).to have_content food_pic.name
-    expect(page).to have_content review_for_food_pic.rating
-    expect(page).to have_content review_for_food_pic.body
-    expect(page).to have_content review_for_food_pic.user_id
-    expect(page).to have_content review_for_food_pic.created_at.strftime("%B %d %Y")
-  end
+    sign_in_as(user4)
 
-  scenario "does not see other reviews for other food pics" do
+    food4 = Food.create(name: "some food pic", description: "this is sooo funny", photo: "food4.com", user: user4)
 
-    visit food_path(food_pic)
+    review_for_food4 = Review.create(rating: 5, body: "awesome", user: user4, food: food4)
 
-    expect(page).to have_content food_pic.name
-    expect(page).to have_content review_for_food_pic.body
+    visit food_path(food4.id)
 
-    expect(page).not_to have_content different_food_pic.name
-    expect(page).not_to have_content review_for_different_food_pic.rating
-    expect(page).not_to have_content review_for_different_food_pic.body
+    expect(page).to have_content food4.name
+    expect(page).to have_content review_for_food4.rating
+    expect(page).to have_content review_for_food4.body
+    expect(page).to have_content review_for_food4.created_at.strftime("%B %d %Y")
   end
 end
