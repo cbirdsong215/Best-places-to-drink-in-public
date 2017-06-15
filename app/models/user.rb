@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_many :foods
+  has_many :reviews
+  has_many :votes
 
   validates :first_name, presence: true
   validates :last_name, presence: true
