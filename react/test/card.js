@@ -13,10 +13,6 @@ describe('Component: Card', () => {
     );
   });
 
-  it('will pass', () =>{
-    expect(true).toBe(true);
-  });
-
   it('should render a p tag', () => {
    expect(wrapper.find('p').length).toEqual(1);
   });

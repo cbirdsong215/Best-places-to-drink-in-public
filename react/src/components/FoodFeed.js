@@ -32,7 +32,6 @@ class FoodFeed extends Component {
           foodId={food.id}
         />
       );
-      debugger
     });
 
     return (
