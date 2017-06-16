@@ -20,17 +20,4 @@ feature "user can add a new food" do
     expect(page).to have_content "taco.pic"
 
   end
-
-  # scenario "visitor does not provide proper information for a food" do
-  #   visit new_food_path
-  #
-  #   click_button "Add Restaurant"
-  #   expect(page).to have_content "Name can't be blank"
-  #   expect(page).to have_content "Address can't be blank"
-  #   expect(page).to have_content "City can't be blank"
-  #   expect(page).to have_content "State can't be blank"
-  #   expect(page).to have_content "Zip can't be blank"
-  #   expect(page).to have_content "Zip is the wrong length (should be 5 characters)"
-  #   expect(page).to have_content "Zip is not a number"
-  # end
 end
