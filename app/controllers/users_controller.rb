@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       flash[:alert] = "You have successfully signed up!"
       redirect_to root_path(@user)
     else
-      flash[:alert]= @user.errors.full_messages.to_sentence
+      flash[:alert] = @user.errors.full_messages.to_sentence
       render :new
     end
   end
