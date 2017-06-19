@@ -2,8 +2,12 @@
 <p>
   <%= @user.first_name %>
   <%= @user.last_name %>
-  <%= @user.avatar %>
-  <li><%= link_to "Delte Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></li>
+  <h3> Email: </h3>
+  <%= @user.email %>
+  <%= @user.avatar %></br>
+  <li><%= link_to "Delete Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></li>
+  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+
 </p>
 
 <% @foods = Food.where(user_id: @user.id).order("created_at") %>

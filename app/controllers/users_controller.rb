@@ -18,6 +18,10 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def edit
+    @user = current_user
+  end
+
   def show
     @user = User.find(current_user.id)
   end
