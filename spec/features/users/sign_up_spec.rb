@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'sign up' do
 
   scenario 'specifying valid and required infromation ' do
-    
+
     visit new_user_registration_path
     fill_in 'First Name', with: 'Bob'
     fill_in 'Last Name', with: 'Smith'
