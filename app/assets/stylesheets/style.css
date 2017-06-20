@@ -1,0 +1,48 @@
+* {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+
+}
+
+h1 {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+.title {
+  font-family: 'Passion One', cursive;
+  font-weight: 700;
+  font-size: 40px;
+  color: #cc0000;
+}
+
+.top-bar {
+  background-color: white;
+}
+
+.top-bar-left {
+  background-color: white;
+}
+
+li.title {
+  background-color: white;
+}
+
+.home {
+  background-color: white;
+
+}
+
+.about {
+  background-color: white;
+
+}
+
+.sign-in {
+  background-color: white;
+}
+
+.sign-out {
+  background-color: white;
+}
