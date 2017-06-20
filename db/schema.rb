@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170614163527) do
     t.string "name", default: "", null: false
     t.string "description", default: "", null: false
     t.bigint "user_id"
-    t.string "photo", null: false
+    t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_foods_on_user_id"

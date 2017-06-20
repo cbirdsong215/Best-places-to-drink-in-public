@@ -17,15 +17,24 @@ class FoodsController < ApplicationController
 
   def create
     @food = Food.new(food_params)
-    respond_to do |format|
-      if @food.save
-        format.html { redirect_to @food, notice: 'Successfully created.' }
-        format.json { render :show, location: @food }
-      else
-        format.html { render :new }
-        format.json { render json: @food.errors }
-      end
+    if @food.save
+      flash[:alert]="Food added successfully"
+      redirect_to food_path(@food)
+    else
+      flash[:alert]= @food.errors.full_messages.to_sentence
+      render :new
     end
+
+
+    # respond_to do |format|
+    #   if @food.save
+    #     format.html { redirect_to @food, notice: 'Successfully created.' }
+    #     format.json { render :show, location: @food }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @food.errors }
+    #   end
+    # end
   end
 
   def update
