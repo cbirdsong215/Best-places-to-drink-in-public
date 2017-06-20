@@ -7,7 +7,7 @@ feature "visitor sees list of reviews on food page" do
 
     sign_in_as(user4)
 
-    food4 = Food.create(name: "some food pic", description: "this is sooo funny", photo: "food4.com", user: user4)
+    food4 = Food.create(name: "some food pic", description: "this is sooo funny", user: user4)
 
     review_for_food4 = Review.create(rating: 5, body: "awesome", user: user4, food: food4)
 
