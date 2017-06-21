@@ -1,19 +1,26 @@
 <hi>User Profile</hi></br>
-<p>
-  <%= @user.first_name %>
-  <%= @user.last_name %>
-  <h3> Email: </h3>
-  <%= @user.email %>
-  <%= @user.avatar %></br>
-  <li><%= link_to "Delete Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></li>
-  <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+<div class="row">
+  <div class="small-10 small-center columns">
+    <p>
+      <%= @user.first_name %>
+      <%= @user.last_name %>
+      <h3> Email: </h3>
+      <%= @user.email %>
+      <%= @user.avatar %></br>
+      <li><%= link_to "Delete Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></li>
+      <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+    </p>
+  </div>
+</div>
 
-</p>
+<div class="row">
+  <div class="small-10 small-center columns">
+    <% @foods = Food.where(user_id: @user.id).order("created_at") %>
 
-<% @foods = Food.where(user_id: @user.id).order("created_at") %>
-
-<% @foods.each do |food| %>
-  <li><%= link_to food.name, food_path(food) %></li>
-  <li><%= food.photo %></li>
-  <li><%= food.description %></li></br>
-<% end %>
+    <% @foods.each do |food| %>
+    <li><%= link_to food.name, food_path(food) %></li>
+    <li><%= food.photo %></li>
+    <li><%= food.description %></li></br>
+    <% end %>
+  </div>
+</div>
