@@ -1,6 +1,7 @@
 require "rails_helper"
 
 feature "user can delete profile" do
+
   let!(:user) { User.create(first_name: 'user', last_name: 'user', email: 'user@email.com', password: 'password', password_confirmation: 'password', admin: false)}
 
   scenario "user visits profile page and deletes profile" do

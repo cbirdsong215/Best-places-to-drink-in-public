@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :foods
   has_many :reviews
   has_many :votes
+  mount_uploader :avatar, AvatarUploader
 
   validates :first_name, presence: true
   validates :last_name, presence: true

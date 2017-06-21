@@ -3,8 +3,8 @@ require 'rails_helper'
 feature 'user signs in' do
 
   let(:user) { User.create(
-    first_name: 'pete',
-    last_name: 'corb',
+    first_name: 'first',
+    last_name: 'last',
     email: 'whateever@yahoo.com',
     password: 'password',
     password_confirmation: 'password'
