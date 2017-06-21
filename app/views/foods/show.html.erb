@@ -1,7 +1,14 @@
-<p>
-  <%= @food.name %>
-  <%= @food.description %>
-</p>
+
+<div class="row">
+  <div class="small-10 small-center columns">
+    <p>
+      <%= @food.name %>
+      <%= @food.photo %>
+      <%= @food.description %>
+    </p>
+  </div>
+</div>
+
 
 <%= link_to "Add a Review", new_food_review_path(@food) %>
 

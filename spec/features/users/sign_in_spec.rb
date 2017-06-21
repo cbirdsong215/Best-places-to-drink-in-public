@@ -37,6 +37,19 @@ feature 'user signs in' do
     expect(page).to have_content('Sign In')
   end
 
+  scenario 'user sees profile picture after sign in' do
+    visit root_path
+    click_link 'Sign In'
+
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign In'
+
+    expect(page).to have_content('Signed in successfully.')
+    expect(page).to have_content('Sign Out')
+    page.find('#profile-picture')['src'].should have_content '/assets/fallback/profile_default-ca7c83d4283250d25a9389e52370105ee6df28fa09a7b749e6de485ee8cb030c.png'
+  end
+
   scenario 'user supplies incorrect password' do
     visit root_path
     click_link 'Sign In'
