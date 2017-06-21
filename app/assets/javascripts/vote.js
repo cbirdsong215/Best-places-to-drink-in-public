@@ -1,16 +1,16 @@
 $(document).ready(function() {
   $(".thumbup").on("click",(function(event) {
     vote(true);
-  }))
+  }));
   $(".thumbdown").on("click",(function(event) {
     vote(false);
-  }))
+  }));
 });
 
 function vote(vote) {
 
   event.preventDefault();
-  reviewId = this.document.activeElement.id
+  reviewId = this.document.activeElement.id;
 
   var request = $.ajax({
     method: "POST",
@@ -19,6 +19,6 @@ function vote(vote) {
   });
 
   request.done(function(data) {
-    document.getElementById("total_" + reviewId).innerHTML = "Total: " + data.total
+    document.getElementById("total_" + reviewId).innerHTML = "Total: " + data.total;
   });
 }
