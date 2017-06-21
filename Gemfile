@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
-gem 'foundation-rails'
+gem 'foundation-rails'  
 gem 'jbuilder', '~> 2.5'
 gem "figaro"
 gem 'fog'
@@ -39,6 +39,8 @@ end
 
 group :test do
   gem 'coveralls', require: false
+  gem 'capybara-webkit', '1.11.1'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

@@ -1,6 +1,5 @@
 <p>
   <%= @food.name %>
-  <%= @food.photo %>
   <%= @food.description %>
 </p>
 
@@ -10,9 +9,16 @@
 
 <ul style="list-style: none;">
   <% @reviews.each do |review| %>
-      <li><%= "#{review.user.first_name} #{review.user.last_name[0]}." %></li></br>
-      <li><%= review.rating %></li></br>
-      <li><%= review.body %></li></br>
-      <li><%= review.created_at.strftime("%B %d %Y") %></li></br></br>
+
+    <li id="total_<%=review.id%>">
+      Total: <%= review.total %>
+    </li>
+    <button id="<%=review.id%>" class="thumbup">Thumb Up</button>
+    <button id="<%=review.id%>" class="thumbdown">Thumb Down</button>
+    <li><%= "#{review.user.first_name} #{review.user.last_name[0]}."%></li></br>
+    <li><%= review.rating %></li></br>
+    <li><%= review.body %></li></br>
+    <li><%= review.created_at.strftime("%B %d %Y") %></li></br></br>
+
   <% end %>
 </ul>
