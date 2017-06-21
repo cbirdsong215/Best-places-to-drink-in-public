@@ -1,6 +1,7 @@
 * {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
+  padding-left: 10px;
 
 }
 
@@ -10,12 +11,36 @@ h1 {
   padding-left: 10px;
 }
 
-.title {
+h2, h3 {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+  padding-left: 10px;
+}
+
+body {
+  padding-left: 10px;
+}
+
+th {
+  color: #f4d9b8;
+}
+
+.menu {
+  background-color: white;
+}
+
+ul.menu {
+  background-color: white;
+}
+
+.menu-text {
   font-family: 'Passion One', cursive;
   font-weight: 700;
   font-size: 40px;
   color: #cc0000;
+  background-color: white;
 }
+
 
 .top-bar {
   background-color: white;
@@ -45,4 +70,23 @@ li.title {
 
 .sign-out {
   background-color: white;
+}
+
+li.breadcrumbs {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+}
+
+p {
+  font-family: 'Passion One', cursive;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+hi {
+  font-family: 'Comfortaa', cursive;
+  font-weight: 700;
+}
+.button {
+  color: #f4d9b8;
 }
