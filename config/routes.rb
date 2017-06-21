@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'foods#index'
   devise_for :users
+  resources :users
   resources :foods do
     resources :reviews
   end
@@ -9,6 +10,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :foods, only: [:index]
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :reviews, only: [] do
+        resources :votes
+      end
     end
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614172829) do
+ActiveRecord::Schema.define(version: 20170614163527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20170614172829) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "photo", null: false
     t.index ["user_id"], name: "index_foods_on_user_id"
   end
 
@@ -58,13 +57,12 @@ ActiveRecord::Schema.define(version: 20170614172829) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "review_id"
-    t.string "status", default: "", null: false
+    t.integer "user_id", null: false
+    t.integer "review_id", null: false
+    t.boolean "status", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["review_id"], name: "index_votes_on_review_id"
-    t.index ["user_id"], name: "index_votes_on_user_id"
+    t.index ["review_id", "user_id"], name: "index_votes_on_review_id_and_user_id", unique: true
   end
 
 end
