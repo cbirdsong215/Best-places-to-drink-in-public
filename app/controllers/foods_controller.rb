@@ -1,5 +1,5 @@
 class FoodsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   def index
     @foods = Food.all
@@ -48,7 +48,7 @@ class FoodsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_review
+    def set_food
       @food = Food.find(params[:id])
     end
 

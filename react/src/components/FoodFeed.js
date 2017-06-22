@@ -7,9 +7,10 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 2
+      foodsPerPage: 12
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
+    this.retrieveFoods = this.retrieveFoods.bind(this);
   }
 
   handlePageNumberClick(event) {
@@ -36,11 +37,14 @@ class FoodFeed extends Component {
     let firstFood = lastFood - this.state.foodsPerPage;
     let currentFoods = this.state.foods.slice(firstFood, lastFood);
 
-    let foods = this.state.currentFoods.map(food => {
+    let foods = currentFoods.map(food => {
       return (
         <Card
-        key={food.id}
-        foodId={food.id}
+          key={food.id}
+          foodId={food.id}
+          photo={food.photo.url}
+          name={food.name}
+          description={food.description}
         />
       );
     });
@@ -68,7 +72,7 @@ class FoodFeed extends Component {
           {foods}
         </div>
         <div>
-        <ul>
+        <ul className="pageNumbers">
           {renderPageNumbers}
         </ul>
         </div>

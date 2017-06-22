@@ -90,3 +90,41 @@ hi {
 .button {
   color: #f4d9b8;
 }
+
+div.food-card {
+    margin: 5px;
+    border: 1px solid #ccc;
+    float: left;
+    width: 180px;
+}
+
+div.food-card:hover {
+    border: 1px solid #777;
+}
+
+div.food-card a {
+  padding: 0;
+}
+
+div.food-card img {
+    padding: 5px 10px 5px 10px;
+    width: 100%;
+    height: auto;
+}
+
+div.food-card-desc, div.food-card-name {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+div.food-card-name {
+  font-size: 17px;
+}
+
+div.food-card-desc {
+  font-size: 14px;
+  color: #7f7f7f;
+
+}
