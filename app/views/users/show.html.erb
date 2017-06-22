@@ -1,14 +1,16 @@
-<h2>User Profile</h2></br>
+<hi>User Profile</hi></br>
 <div class="row">
   <div class="small-10 small-center columns">
-
-      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+    <p>
+      <%= @user.first_name %>
+      <%= @user.last_name %>
       <h3> Email: </h3>
-      <h4><%= @user.email %></h4>
+      <%= @user.email %>
       <%= @user.avatar %></br>
-       <button type="button" class="button"><%= link_to "Delete Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></button>
-       <button type="button" class="button"><%= link_to "Edit Profile", edit_user_registration_path %></button>
-    </div>
+      <li><%= link_to "Delete Account", user_path(current_user), data: {:confirm => 'Are you sure?'}, :method => :delete  %></li>
+      <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
+    </p>
+  </div>
 </div>
 
 <div class="row">
