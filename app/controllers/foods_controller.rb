@@ -61,4 +61,13 @@ class FoodsController < ApplicationController
       params.require(:food).permit(:name, :description, :photo, :user_id).merge(user_id: current_user.id)
     end
 
+
+    def editable_by?(user)
+      user == self.user || user.try(:admin?)
+    end
+
+    def destroyable_by?(user)
+      user.admin?
+    end
+
 end

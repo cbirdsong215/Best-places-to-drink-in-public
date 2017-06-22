@@ -7,7 +7,7 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 1,
+      foodsPerPage: 12,
       search: ''
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
@@ -82,24 +82,30 @@ class FoodFeed extends Component {
 
     return (
       <div>
-      <div className="small-12 columns medium-6 columns large-6 columns">
-        <input
-          className="searchBar"
-          placeholder="Search"
-          type="text"
-          value={this.state.search}
-          onChange={this.updateSearch}
-        />
-      </div>
-        <div className="posts foods" >
-          {foods}
+        <div className="row">
+          <div className="small-12 columns medium-6 columns large-6 columns">
+            <input
+              className="search-bar"
+              placeholder="Search"
+              type="text"
+              value={this.state.search}
+              onChange={this.updateSearch}
+            />
+          </div>
         </div>
+
         <div>
-        <ul className="small-8 columns medium-8 columns large-8 columns">
-          {renderPageNumbers}
-        </ul>
+        <div className="row">
+          <div className="small-8 small-centered columns">
+            {foods}
+          </div>
         </div>
       </div>
+      <ul>
+        Page {renderPageNumbers}
+      </ul>
+  </div>
+
     );
   }
 };
