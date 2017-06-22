@@ -30,6 +30,9 @@ class FoodFeed extends Component {
         <Card
           key={food.id}
           foodId={food.id}
+          photo={food.photo.url}
+          name={food.name}
+          description={food.description}
         />
       );
     });
