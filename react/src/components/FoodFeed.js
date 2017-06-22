@@ -20,8 +20,9 @@ class FoodFeed extends Component {
   }
 
   updateSearch(event) {
-  this.setState({ search: event.target.value.substr(0,20) });
-}
+  this.setState({ currentPage: 1});
+  this.setState({ search: event.target.value });
+  }
 
   retrieveFoods() {
     $.ajax({
@@ -48,16 +49,7 @@ class FoodFeed extends Component {
 
     let lastFood = this.state.currentPage * this.state.foodsPerPage;
     let firstFood = lastFood - this.state.foodsPerPage;
-    let currentFoods = this.state.foods.slice(firstFood, lastFood);
-
-    if (firstFood < 0 ) {
-      currentFoods = filteredfoods.slice(0, 10);
-    } else if (lastFood > filteredfoods.length) {
-      currentFoods = filteredfoods.slice(filteredfoods.length - 10, filteredfoods.length);
-    } else {
-      currentFoods = filteredfoods.slice(firstFood, lastFood);
-    }
-
+    let currentFoods = filteredfoods.slice(firstFood, lastFood);
 
     let foods = currentFoods.map(food => {
       return (
@@ -72,7 +64,7 @@ class FoodFeed extends Component {
     });
 
     let pageNumbers = [];
-    for(let i = 1; i <= Math.ceil(this.state.foods.length / this.state.foodsPerPage); i++) {
+    for(let i = 1; i <= Math.ceil(filteredfoods.length / this.state.foodsPerPage); i++) {
       pageNumbers.push(i);
     };
 
