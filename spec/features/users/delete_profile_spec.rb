@@ -7,7 +7,6 @@ feature "user can delete profile" do
     sign_in_as(user5)
     id = user5.id
     visit user_path(user5)
-
     expect(page).to have_content "Delete Account"
     click_link "Delete Account"
 
