@@ -1,6 +1,7 @@
 // test/components/Card.js
 import Card from '../src/components/Card';
 import { mount } from 'enzyme';
+import jasmineEnzyme from 'jasmine-enzyme';
 import React from 'react';
 
 describe('Component: Card', () => {
@@ -15,7 +16,7 @@ describe('Component: Card', () => {
     wrapper = mount(
       <Card
         foodId="1"
-        photo="sample.jpg"
+        photo="https://foodie-review.s3.amazonaws.com/uploads/food/photo/1/sample.jpg"
         name="Awesome Taco"
         description="This is one awesome taco"
       />
@@ -23,7 +24,7 @@ describe('Component: Card', () => {
   });
 
   it('img tag should be present', () => {
-   expect(wrapper.find('img').toBePresent();
+   expect(wrapper.find('img')).toBePresent();
   });
 
   it('should render an img tag with the specific prop', () => {
