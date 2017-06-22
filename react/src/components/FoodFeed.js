@@ -7,15 +7,21 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 12
+      foodsPerPage: 2,
+      search: ''
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
     this.retrieveFoods = this.retrieveFoods.bind(this);
+    this.updateSearch = this.updateSearch.bind(this);
   }
 
   handlePageNumberClick(event) {
-    this.setState({ currentPage: event.target.id})
+    this.setState({ currentPage: event.target.id});
   }
+
+  updateSearch(event) {
+  this.setState({ search: event.target.value.substr(0,20) });
+}
 
   retrieveFoods() {
     $.ajax({
@@ -33,9 +39,25 @@ class FoodFeed extends Component {
   }
 
   render() {
+    let filteredfoods = this.state.foods.filter(
+      (food) => {
+        return food.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
+        food.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      }
+    );
+
     let lastFood = this.state.currentPage * this.state.foodsPerPage;
     let firstFood = lastFood - this.state.foodsPerPage;
     let currentFoods = this.state.foods.slice(firstFood, lastFood);
+
+    if (firstFood < 0 ) {
+      currentFoods = filteredfoods.slice(0, 10);
+    } else if (lastFood > filteredfoods.length) {
+      currentFoods = filteredfoods.slice(filteredfoods.length - 10, filteredfoods.length);
+    } else {
+      currentFoods = filteredfoods.slice(firstFood, lastFood);
+    }
+
 
     let foods = currentFoods.map(food => {
       return (
@@ -68,11 +90,20 @@ class FoodFeed extends Component {
 
     return (
       <div>
+      <div className="small-12 columns medium-6 columns large-6 columns">
+        <input
+          className="searchBar"
+          placeholder="Search"
+          type="text"
+          value={this.state.search}
+          onChange={this.updateSearch}
+        />
+      </div>
         <div className="posts foods" >
           {foods}
         </div>
         <div>
-        <ul className="pageNumbers">
+        <ul className="small-8 columns medium-8 columns large-8 columns">
           {renderPageNumbers}
         </ul>
         </div>
