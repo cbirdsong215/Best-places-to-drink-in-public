@@ -7,7 +7,7 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 12,
+      foodsPerPage: 2,
       search: ''
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
@@ -42,9 +42,9 @@ class FoodFeed extends Component {
     let filteredfoods = this.state.foods.filter(
       (food) => {
         return food.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 ||
-        food.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+        food.description.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
-    )
+    );
 
     let lastFood = this.state.currentPage * this.state.foodsPerPage;
     let firstFood = lastFood - this.state.foodsPerPage;
@@ -53,7 +53,7 @@ class FoodFeed extends Component {
     if (firstFood < 0 ) {
       currentFoods = filteredfoods.slice(0, 10);
     } else if (lastFood > filteredfoods.length) {
-      currentFoods = filteredfoods.slice(filteredfoods.length - 10, filteredfoods.length)
+      currentFoods = filteredfoods.slice(filteredfoods.length - 10, filteredfoods.length);
     } else {
       currentFoods = filteredfoods.slice(firstFood, lastFood);
     }
