@@ -7,7 +7,7 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 1,
+      foodsPerPage: 12,
       search: ''
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
