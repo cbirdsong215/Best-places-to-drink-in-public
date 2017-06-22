@@ -1,26 +1,4 @@
 class UsersController < ApplicationController
-  def new
-    @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-    if @user.save
-      flash[:alert] = "You have successfully signed up!"
-      redirect_to root_path(@user)
-    else
-      flash[:alert] = @user.errors.full_messages.to_sentence
-      render :new
-    end
-  end
-
-  def index
-    @users = User.all
-  end
-
-  def edit
-    @user = current_user
-  end
 
   def show
     @user = User.find(current_user.id)
