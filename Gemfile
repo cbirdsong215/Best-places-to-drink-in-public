@@ -13,7 +13,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'uglifier', '>= 1.3.0'
 gem 'carrierwave'
-gem 'foundation-rails'  
+gem 'foundation-rails'
 gem 'jbuilder', '~> 2.5'
 gem "figaro"
 gem 'fog'
@@ -22,7 +22,7 @@ gem 'net-ssh'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
-  gem 'capybara'
+  #gem 'capybara'
   gem 'rspec-rails'
   gem 'factory_girl'
   gem 'launchy'
@@ -39,7 +39,7 @@ end
 
 group :test do
   gem 'coveralls', require: false
-  gem 'capybara-webkit', '1.11.1'
+  # gem 'capybara-webkit', '1.11.1'
   gem 'database_cleaner'
 end
 
