@@ -17,12 +17,12 @@ feature "User can add a review for food" do
   )}
 
   scenario "Successfully adds a review for a food" do
+
     sign_in_as(user)
 
     visit food_path(food)
 
     click_link "Add a Review"
-
 
     fill_in "Rating", with: 5
     fill_in "Review", with: "This is awesome!!"

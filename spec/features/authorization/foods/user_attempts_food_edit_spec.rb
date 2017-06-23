@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user attempts to edit an existing food" do
+xfeature "user attempts to edit an existing food" do
   let!(:user) {User.create(first_name: 'User', last_name: 'User1',
     email: 'user1@email.com', password: 'password', password_confirmation: 'password',
      admin: false)}
