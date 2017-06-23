@@ -1,6 +1,5 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @foods = Food.all
@@ -14,9 +13,6 @@ class FoodsController < ApplicationController
   end
 
   def edit
-    unless @food.editable_by?(current_user)
-      redirect_to :root
-    end
   end
 
   def create
@@ -36,6 +32,7 @@ class FoodsController < ApplicationController
         format.html { redirect_to @food, notice: 'Successfully updated.' }
         format.json { render :show, location: @food }
       else
+        flash[:alert] = @food.errors.full_messages.to_sentence
         format.html { render :edit }
         format.json { render json: @food.errors }
       end
@@ -68,4 +65,5 @@ class FoodsController < ApplicationController
     def destroyable_by?(user)
       user.admin?
     end
+
 end
