@@ -20,6 +20,8 @@ feature "User can add a review for food" do
 
     sign_in_as(user)
 
+    food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
+
     visit food_path(food)
 
     click_link "Add a Review"
@@ -27,7 +29,7 @@ feature "User can add a review for food" do
     fill_in "Rating", with: 5
     fill_in "Review", with: "This is awesome!!"
 
-    click_button "Add Review"
+    click_button "Create Review"
 
 
     expect(page).to have_content "Review was successfully created."

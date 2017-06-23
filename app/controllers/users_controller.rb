@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def destroy
     unless @user.destroyable_by?(current_user, @user)
+      flash[:alert] = "You do not have permission to delete that user."
       redirect_to :root
     else
       reviews = Review.where(user_id: current_user)
