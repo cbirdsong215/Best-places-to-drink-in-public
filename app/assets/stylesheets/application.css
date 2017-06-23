@@ -38,19 +38,6 @@
      flex: 1 1 90%;
    }
 
-  h1 {
-     font-family: monospace;
-   }
-
-  h3 {
-     font-family: monospace;
-   }
-
-  img {
-     padding-bottom: 20px;
-   }
-
-
   .search-bar {
      width: 500px !important;
    }

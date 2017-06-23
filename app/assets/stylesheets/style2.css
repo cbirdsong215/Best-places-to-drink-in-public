@@ -101,3 +101,19 @@ h1 {
   font-family: 'Comfortaa', cursive;
   font-weight: 700;
 }
+
+.image {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
+.food-box {
+  display: flex;
+   flex-direction: row;
+   grid-row-start: auto;
+   grid-row-end: span 2;
+   min-width: 400px;
+   text-align: center;
+   flex-wrap: wrap;
+}
