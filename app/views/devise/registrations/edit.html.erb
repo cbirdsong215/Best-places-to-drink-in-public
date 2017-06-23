@@ -8,6 +8,11 @@
 
 <div class="row">
   <div class="small-10 small-center columns">
+    <%= image_tag (@user.avatar) %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-10 small-center columns">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>
 
@@ -41,7 +46,7 @@
 </div>
 <div class="row">
   <div class="small-10 small-center columns">
-    <div class="button round">
+    <div>
       <%= f.submit "Save Changes" %>
     </div>
   </div>
