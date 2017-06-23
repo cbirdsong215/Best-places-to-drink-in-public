@@ -94,13 +94,11 @@ class FoodFeed extends Component {
           </div>
         </div>
 
-        <div>
-        <div className="row">
-          <div className="small-8 small-centered columns">
+       <div className="large-10 large-centered columns">
+          <div className="food-box">
             {foods}
           </div>
         </div>
-      </div>
       <ul>
         Page {renderPageNumbers}
       </ul>

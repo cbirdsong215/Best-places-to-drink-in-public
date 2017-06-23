@@ -1,31 +1,36 @@
 
-<div class="row">
-  <div class="small-10 small-center columns">
-    <p>
-      <%= @food.name %>
-      <%= @food.photo %>
-      <%= @food.description %>
-    </p>
+<div class="medium-8 medium-centered columns">
+    <div class="card">
+      <%= image_tag (@food.photo)%>
+      <div class="card-section">
+        <h2><%= @food.name %><h2>
+        <p><%= @food.description %><p>
+      </div>
+    </div>
   </div>
+
+    <% @reviews = Review.where(food_id: @food.id).order("created_at") %>
+    <% @reviews.each do |review| %>
+    <div class="card" style="width: 400px;">
+      <div class="card-divider">
+      <p id="total_<%=review.id%>">
+        Total: <%= review.total %>
+      </p>
+    </div>
+    <div class="card-section">
+      <i class="fa fa-thumbs-up" aria-hidden="true"></i><button id="<%=review.id%>" class="thumbup">Thumb Up</button></br>
+      <i class="fa fa-thumbs-down" aria-hidden="true"></i><button id="<%=review.id%>" class="thumbdown">Thumb Down</button></br>
+    </div>
+      <div class="card-section">
+        <%= "#{review.user.first_name} #{review.user.last_name[0]}."%>
+      </div>
+      <div class="card-section">
+        Rating: <%= review.rating %></br>
+        Review: <%= review.body %></br>
+        Created: <%= review.created_at.strftime("%B %d %Y") %>
+      </div>
+    </div>
+    <% end %>
+
+<div class="button"><%= link_to "Add a Review", new_food_review_path(@food) %>
 </div>
-
-
-<%= link_to "Add a Review", new_food_review_path(@food) %>
-
-<% @reviews = Review.where(food_id: @food.id).order("created_at") %>
-
-<ul style="list-style: none;">
-  <% @reviews.each do |review| %>
-
-    <li id="total_<%=review.id%>">
-      Total: <%= review.total %>
-    </li>
-    <button id="<%=review.id%>" class="thumbup">Thumb Up</button>
-    <button id="<%=review.id%>" class="thumbdown">Thumb Down</button>
-    <li><%= "#{review.user.first_name} #{review.user.last_name[0]}."%></li></br>
-    <li><%= review.rating %></li></br>
-    <li><%= review.body %></li></br>
-    <li><%= review.created_at.strftime("%B %d %Y") %></li></br></br>
-
-  <% end %>
-</ul>
