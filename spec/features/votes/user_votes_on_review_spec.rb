@@ -36,6 +36,9 @@ feature 'user votes', js: true do
     expect(page).to have_content("Total: -1")
     click_button("Thumb Down")
     expect(page).to have_content("Total: 0")
-
+    click_button("Thumb Up")
+    expect(page).to have_content("Total: 1")
+    click_button("Thumb Up")
+    expect(page).to have_content("Total: 0") 
   end
 end
