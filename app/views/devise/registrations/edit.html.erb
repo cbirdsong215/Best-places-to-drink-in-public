@@ -9,6 +9,8 @@
 <div class="row">
   <div class="small-10 small-center columns">
     <%= image_tag (@user.avatar) %>
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
   </div>
 </div>
 <div class="row">
@@ -46,9 +48,7 @@
 </div>
 <div class="row">
   <div class="small-10 small-center columns">
-    <div>
-      <%= f.submit "Save Changes" %>
-    </div>
+    <%= f.submit "Save Changes" %>
   </div>
 </div>
 <% end %>
