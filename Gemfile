@@ -39,7 +39,7 @@ end
 
 group :test do
   gem 'coveralls', require: false
-  gem 'capybara-webkit', '1.11.1'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
 end
 
