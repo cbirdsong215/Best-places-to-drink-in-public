@@ -1,21 +1,10 @@
 class UsersController < ApplicationController
-  
+
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:new]
 
   def new
     @user = User.new
-  end
-
-  def create
-    @user = User.create(user_params)
-    if @user.save
-      flash[:alert] = "You have successfully signed up!"
-      redirect_to root_path(@user)
-    else
-      flash[:alert] = @user.errors.full_messages.to_sentence
-      render :new
-    end
   end
 
   def edit
