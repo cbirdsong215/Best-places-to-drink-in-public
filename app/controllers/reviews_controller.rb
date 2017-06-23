@@ -1,8 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
-
-  def show
-  end
+  before_action only: [:show, :destroy]
 
   def new
     @review = Review.new
@@ -20,19 +17,8 @@ class ReviewsController < ApplicationController
         format.html { redirect_to @food, notice: 'Review was successfully created.' }
         format.json { render :show, location: @review }
       else
+        flash[:alert] = @review.errors.full_messages.to_sentence
         format.html { render :new }
-        format.json { render json: @review.errors }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
-        format.json { render :show, location: @review }
-      else
-        format.html { render :edit }
         format.json { render json: @review.errors }
       end
     end
@@ -47,12 +33,6 @@ class ReviewsController < ApplicationController
   end
 
   private
-
-    # Use callbacks to share common setup or constraints between actions.
-    def set_review
-      @review = Review.find(params[:id])
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
       params.require(:review).permit(:rating, :body, :user_id, :food_id).merge(user_id: current_user.id)

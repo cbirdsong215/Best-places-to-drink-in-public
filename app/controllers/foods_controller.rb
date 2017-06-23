@@ -32,6 +32,7 @@ class FoodsController < ApplicationController
         format.html { redirect_to @food, notice: 'Successfully updated.' }
         format.json { render :show, location: @food }
       else
+        flash[:alert] = @food.errors.full_messages.to_sentence
         format.html { render :edit }
         format.json { render json: @food.errors }
       end

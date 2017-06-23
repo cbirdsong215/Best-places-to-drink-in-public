@@ -9,6 +9,9 @@
   </div>
 </div>
 
+<% if @food.user == current_user %>
+<%= link_to "Edit", edit_food_path(@food) %>
+<% end %>
 
 <%= link_to "Add a Review", new_food_review_path(@food) %>
 

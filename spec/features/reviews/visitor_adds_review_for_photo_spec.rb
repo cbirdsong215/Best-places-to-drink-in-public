@@ -9,11 +9,15 @@ feature "User can add a review for food" do
     password: 'password',
     password_confirmation: 'password'
   )}
+  let!(:food) { Food.create(
+    name: "food name",
+    description: "food description",
+    photo: "food_pic.com",
+    user: user
+  )}
 
-  scenario "adds a review for a food" do
+  scenario "Successfully adds a review for a food" do
     sign_in_as(user)
-    
-    food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
 
     visit food_path(food)
 
@@ -30,5 +34,26 @@ feature "User can add a review for food" do
     expect(page).to have_content food.name
     expect(page).to have_content 5
     expect(page).to have_content "This is awesome!!"
+  end
+
+  scenario "tries to add a review without unaccepted rating" do
+    sign_in_as(user)
+
+    food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
+
+    visit food_path(food)
+    click_link "Add a Review"
+    fill_in "Rating", with: ''
+    click_button "Add Review"
+
+    expect(page).to have_content "Rating can't be blank and Rating must be a whole number between 1 - 5"
+
+    visit food_path(food)
+    click_link "Add a Review"
+    fill_in "Rating", with: 'not a number'
+    click_button "Add Review"
+
+    expect(page).to have_content "Rating must be a whole number between 1 - 5"
+
   end
 end

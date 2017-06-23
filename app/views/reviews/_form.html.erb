@@ -15,7 +15,13 @@
     <%= f.hidden_field :food_id, value: @food.id %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Add Review" %>
-  </div>
+  <% if @review.id == nil %>
+    <div class="actions">
+      <%= f.submit "Add Review" %>
+    </div>
+  <% else %>
+    <div class="actions">
+      <%= f.submit "Update Review" %>
+    </div>
+  <% end %>
 <% end %>
