@@ -1,6 +1,5 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @foods = Food.all
@@ -14,9 +13,6 @@ class FoodsController < ApplicationController
   end
 
   def edit
-    unless @food.editable_by?(current_user)
-      redirect_to :root
-    end
   end
 
   def create
@@ -59,13 +55,5 @@ class FoodsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
       params.require(:food).permit(:name, :description, :photo, :user_id).merge(user_id: current_user.id)
-    end
-
-    def editable_by?(user)
-      user == self.user || user.try(:admin?)
-    end
-
-    def destroyable_by?(user)
-      user.admin?
     end
 end
