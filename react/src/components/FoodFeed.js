@@ -7,7 +7,7 @@ class FoodFeed extends Component {
     this.state = {
       foods: [],
       currentPage: 1,
-      foodsPerPage: 12,
+      foodsPerPage: 10,
       search: ''
     }
     this.handlePageNumberClick = this.handlePageNumberClick.bind(this);
@@ -65,7 +65,7 @@ class FoodFeed extends Component {
 
     let pageNumbers = [];
     for(let i = 1; i <= Math.ceil(filteredfoods.length / this.state.foodsPerPage); i++) {
-      pageNumbers.push(i);
+      pageNumbers.push(" " + i + " ");
     };
 
     let renderPageNumbers = pageNumbers.map(number => {
@@ -99,7 +99,7 @@ class FoodFeed extends Component {
             {foods}
           </div>
         </div>
-      <ul>
+      <ul className="pagination">
         Page {renderPageNumbers}
       </ul>
   </div>
