@@ -17,6 +17,7 @@ feature "User can add a review for food" do
   )}
 
   scenario "Successfully adds a review for a food" do
+
     sign_in_as(user)
 
     food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
@@ -24,7 +25,6 @@ feature "User can add a review for food" do
     visit food_path(food)
 
     click_link "Add a Review"
-
 
     fill_in "Rating", with: 5
     fill_in "Review", with: "This is awesome!!"
