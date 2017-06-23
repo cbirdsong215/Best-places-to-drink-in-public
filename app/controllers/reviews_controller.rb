@@ -1,12 +1,14 @@
 class ReviewsController < ApplicationController
-  before_action only: [:show, :destroy]
+
+  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
+
+  def show
+  end
 
   def new
     @review = Review.new
     @food = Food.find(params[:food_id])
-  end
-
-  def edit
   end
 
   def create
@@ -24,11 +26,38 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def destroy
-    @review.destroy
+  def edit
+    unless @review.editable_by?(current_user)
+      flash[:alert] = "You may only edit your own reviews"
+      redirect_to :root
+    else
+      @food = Food.find(params[:food_id])
+    end
+  end
+
+  def update
+    @food = Food.find(params[:food_id])
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
-      format.json { head :no_content }
+      if @review.update(review_params)
+        format.html { redirect_to @food, notice: 'Review was successfully updated.' }
+        format.json { render :show, location: @review }
+      else
+        format.html { render :edit }
+        format.json { render json: @review.errors }
+      end
+    end
+  end
+
+  def destroy
+    unless @review.destroyable_by?(current_user)
+      flash[:alert] = "You do not have permission to delete that review."
+      redirect_to :root
+    else
+      @review.destroy
+      respond_to do |format|
+        format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

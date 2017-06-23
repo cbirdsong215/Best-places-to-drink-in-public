@@ -47,7 +47,6 @@ feature "user can add a new food" do
     expect(page).to have_content("Awesome Taco")
     expect(page).to have_content("This is the best taco ever")
     expect(page).to have_content("Food added successfully")
-    page.find('img')['src'].should have_content '/assets/fallback/profile_default-ca7c83d4283250d25a9389e52370105ee6df28fa09a7b749e6de485ee8cb030c.png'
 
   end
 

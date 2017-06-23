@@ -87,5 +87,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
-
+require "capybara/rails"
 Capybara.javascript_driver = :webkit
+
+Capybara::Webkit.configure do |config|
+  config.allow_url("fonts.googleapis.com")
+  config.allow_url("cdnjs.cloudflare.com")
+  config.allow_url("https://use.fontawesome.com/4401ab1d42.js")
+  config.allow_url("https://use.fontawesome.com")
+  config.allow_url("https://use.fontawesome.com/4401ab1d42.css")
+end

@@ -15,9 +15,6 @@
   <%= link_to "Edit", edit_food_path(@food) %>
   <% end %>
 
-  <%= link_to "Add a Review", new_food_review_path(@food) %>
-
-
     <% @reviews = Review.where(food_id: @food.id).order("created_at") %>
     <% @reviews.each do |review| %>
     <div class="card" style="width: 400px;">
