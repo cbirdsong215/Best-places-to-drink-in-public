@@ -9,4 +9,13 @@ class Review < ApplicationRecord
   def total
     self.votes.where(status: true).count - self.votes.where(status: false).count
   end
+
+  def editable_by?(user)
+    user == self.user || user.try(:admin?)
+  end
+
+  def destroyable_by?(user)
+    user.admin?
+  end
+  
 end

@@ -22,7 +22,6 @@ feature 'user votes', js: true do
     sign_in_as(user)
     visit food_path(food)
     expect(page).to have_content("Total: 0")
-
     click_button("Thumb Up")
     expect(page).to have_content("Total: 1")
   end
@@ -30,7 +29,7 @@ feature 'user votes', js: true do
   scenario 'user changes vote on review' do
     sign_in_as(user)
     visit food_path(food)
-    
+
     click_button("Thumb Up")
     expect(page).to have_content("Total: 1")
     click_button("Thumb Down")

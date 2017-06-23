@@ -1,5 +1,6 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @foods = Food.all
@@ -13,6 +14,10 @@ class FoodsController < ApplicationController
   end
 
   def edit
+    unless @food.editable_by?(current_user)
+      flash[:alert] = "Use your 'profile' link to edit your info"
+      redirect_to :root
+    end
   end
 
   def create
@@ -39,10 +44,12 @@ class FoodsController < ApplicationController
   end
 
   def destroy
-    @food.destroy
-    respond_to do |format|
-      format.html { redirect_to food_url, notice: 'Food was successfully destroyed.' }
-      format.json { head :no_content }
+    if @food.destroyable_by?(current_user)
+      @food.destroy
+      respond_to do |format|
+        format.html { redirect_to food_url, notice: 'Food was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
