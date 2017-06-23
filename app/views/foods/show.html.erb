@@ -28,6 +28,7 @@
       <i class="fa fa-thumbs-down" aria-hidden="true"></i><button id="<%=review.id%>" class="thumbdown">Thumb Down</button></br>
     </div>
       <div class="card-section">
+        <%= image_tag review.user.avatar.url, id: "profile-picture", size: "30x30" %>
         <%= "#{review.user.first_name} #{review.user.last_name[0]}."%>
       </div>
       <div class="card-section">
