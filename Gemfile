@@ -28,7 +28,6 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
-  gem 'capybara-webkit'
 end
 
 group :development do
@@ -40,7 +39,7 @@ end
 
 group :test do
   gem 'coveralls', require: false
-  #gem 'capybara-webkit', '1.11.1'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
 end
 

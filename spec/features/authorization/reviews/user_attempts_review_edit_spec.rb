@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "user attempts to edit another user's profile" do
+xfeature "user attempts to edit another user's profile" do
 
   let!(:user) {User.create(first_name: 'User', last_name: 'User1',
     email: 'user1@email.com', password: 'password', password_confirmation: 'password',

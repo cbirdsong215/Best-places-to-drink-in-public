@@ -20,8 +20,6 @@ feature "User can add a review for food" do
 
     sign_in_as(user)
 
-    food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
-
     visit food_path(food)
 
     click_link "Add a Review"
@@ -38,22 +36,20 @@ feature "User can add a review for food" do
     expect(page).to have_content "This is awesome!!"
   end
 
-  scenario "tries to add a review without unaccepted rating" do
+  scenario "tries to add a review with unaccepted rating" do
     sign_in_as(user)
-
-    food = Food.create(name: "some food pic", description: "this is sooo funny", user: user)
 
     visit food_path(food)
     click_link "Add a Review"
     fill_in "Rating", with: ''
-    click_button "Add Review"
+    click_button "Create Review"
 
     expect(page).to have_content "Rating can't be blank and Rating must be a whole number between 1 - 5"
 
     visit food_path(food)
     click_link "Add a Review"
     fill_in "Rating", with: 'not a number'
-    click_button "Add Review"
+    click_button "Create Review"
 
     expect(page).to have_content "Rating must be a whole number between 1 - 5"
 
